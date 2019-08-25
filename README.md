@@ -8,7 +8,7 @@
 
 ## Usage In Progresing.........
 
-[doc](./doc/index.html)
+[usage docs](https://ihgazni2.github.io/elistjs/global.html#mapf)
 
 
 ## In Progresing.........
