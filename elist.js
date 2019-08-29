@@ -1,6 +1,6 @@
 
 
-////map
+////MAP
 
 
 /**
@@ -556,7 +556,7 @@ Object.defineProperty(Array.prototype, "mapo", {
 
 
 
-////slct
+////SLCT
 
 function slctivFivo(arr,condFuncsArr,otherArgsArr) {
     if(otherArgsArr===undefined) {
@@ -1228,7 +1228,7 @@ function uniqualize(arr) {
 }
 
 
-Array.defineProperty(Array.prototype, "uniqualize", {
+Object.defineProperty(Array.prototype, "uniqualize", {
     value: function () {
         let st = new Set(this);
         return(Array.from(st))
@@ -1241,8 +1241,29 @@ Array.defineProperty(Array.prototype, "uniqualize", {
 
 //function uniqualizeKeepOrder
 
+// flat
+
+function flat(arr) {
+    while(arr.some(item => Array.isArray(item))){
+        arr=[].concat(...arr)
+    }
+    return(arr)
+}
+
+Object.defineProperty(Array.prototype, "flat", {
+    value: function () {
+        let arr = this
+        while(arr.some(item => Array.isArray(item))){
+            arr=[].concat(...arr)
+        }
+        return(arr)
+    },
+    writable: true,
+    enumerable: false,
+    configurable: true
+});
 //
-//
+
 module.exports = {
     mapfivo:mapfivo,
     mapfiv:mapfiv,
