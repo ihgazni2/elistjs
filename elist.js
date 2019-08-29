@@ -37,6 +37,17 @@
  *     var narr = mapfivo(arr,mapFuncsArr,otherArgsArr)
  *     arr
  *     narr
+ *     
+ *     ////
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     > narr
+ *     [ 'operation 0:plus :100+10 is 110',
+ *       'operation 1:minus :200-20 is 180',
+ *       'operation 2:mul :300*30 is 9000',
+ *       'operation 3:div :400/40 is 10',
+ *       'operation 4:mod :500%50 is 0' ]
+ *     >
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
