@@ -15,7 +15,7 @@
  * </pre>
  *
  * @example
- * function
+ * term
  *
  *     var arr = [100,200,300,400,500]
  *
@@ -35,6 +35,7 @@
  *         ["mod",50]
  *     ]
  *
+ *     //function
  *     var narr = mapfivo(arr,mapFuncsArr,otherArgsArr)
  *     arr
  *     narr
@@ -50,9 +51,22 @@
  *       'operation 4:mod :500%50 is 0' ]
  *     >
  *
- * @example
- * prototype
- * 
+ *     //prototype
+ *     arr.mapfivo(mapFuncsArr,otherArgsArr)
+ *     arr
+ *
+ *     ////
+ *     > arr.mapfivo(mapFuncsArr,otherArgsArr)
+ *     [ 'operation 0:plus :100+10 is 110',
+ *       'operation 1:minus :200-20 is 180',
+ *       'operation 2:mul :300*30 is 9000',
+ *       'operation 3:div :400/40 is 10',
+ *       'operation 4:mod :500%50 is 0' ]
+ *     >
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     >
+ *
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
@@ -316,7 +330,7 @@ Object.defineProperty(Array.prototype, "mapfi", {
  * </pre>
  *
  * @example
- * function    
+ * term    
  *
  *     var arr = [100,200,300,400,500]
  *     
@@ -335,9 +349,10 @@ Object.defineProperty(Array.prototype, "mapfi", {
  *         [Math.tanh,4],
  *         [Math.sqrt,5]
  *     ]
- *     
+ *   
+ *     //function
  *     var narr = mapfo(arr,mapFuncsArr,otherArgsArr)
- *    
+ *   
  *     ////
  *     > arr
  *     [ 100, 200, 300, 400, 500 ]
@@ -348,9 +363,10 @@ Object.defineProperty(Array.prototype, "mapfi", {
  *       0.566157406536178,
  *       1.0515811984959769 ]
  *     >
- *
- * @example
- * ptototype
+ *     
+ *     //prototype
+ *     arr.mapfo(mapFuncsArr,otherArgsArr)
+ *     arr
  *
  *     ////
  *     > arr.mapfo(mapFuncsArr,otherArgsArr)
@@ -515,7 +531,7 @@ Object.defineProperty(Array.prototype, "mapvo", {
  * </pre>
  *
  * @example
- * function
+ * term
  *
  *     var arr = [100,200,300,400,500]
  *     
@@ -529,6 +545,7 @@ Object.defineProperty(Array.prototype, "mapvo", {
  *     
  *     var otherArgs = [Math.sin,1]
  *     
+ *     //function
  *     var narr = mapf(arr,mapFuncsArr,otherArgs)
  *     
  *     ////
@@ -542,10 +559,21 @@ Object.defineProperty(Array.prototype, "mapvo", {
  *       0.5871809965734309 ]
  *     >
  *
- * @example
- * prototype
+ *     //prototype
+ *     arr.mapf(mapFuncsArr,otherArgs)
+ *     arr
  *
- *
+ *     ////
+ *     > arr.mapf(mapFuncsArr,otherArgs)
+ *     [ 0.8414709848078965,
+ *     0.7456241416655579,
+ *     0.6784304773607402,
+ *     0.6275718320491591,
+ *     0.5871809965734309 ]
+ *     >
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     >
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
@@ -570,7 +598,7 @@ function mapf(arr,mapFuncsArr,otherArgs) {
     return(narr)
 }
 
-function _mapf(arr,mapFuncsArr,otherArgs) {
+function _mapf(mapFuncsArr,otherArgs) {
     return(mapf(this,mapFuncsArr,otherArgs))
 }
 
