@@ -1264,6 +1264,37 @@ Object.defineProperty(Array.prototype, "flat", {
 });
 //
 
+////
+function tlist(arr) {
+    let it = arr.entries()
+    return(Array.from(it))
+}
+
+Object.defineProperty(Array.prototype, "tlist", {
+    value: tlist,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
+function allIndexesOf(arr,value) {
+    let tl =  tlist(arr)
+    tl= tl.filter((t)=>(t[1] == value))
+    tl = tl.map((r)=>r[0])
+    return(tl)
+}
+
+Object.defineProperty(Array.prototype, "allIndexesOf", {
+    value: allIndexesOf,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
+
+
+////
+
 module.exports = {
     mapfivo:mapfivo,
     mapfiv:mapfiv,
@@ -1347,4 +1378,6 @@ module.exports = {
     initMat:initMat,
     extendWithOneValue:extendWithOneValue,
     uniqualize:uniqualize,
+    tlist:tlist,
+    allIndexesOf:allIndexesOf
 }
