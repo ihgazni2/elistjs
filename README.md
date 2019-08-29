@@ -10,7 +10,7 @@
 
     partly, still in progresing.........
 
-[USAGE DOCS](https://ihgazni2.github.io/elistjs/global.html#mapf)
+**[USAGE DOCS](https://ihgazni2.github.io/elistjs/global.html#mapf)**
 
 
 ## In Progresing.........
