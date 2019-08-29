@@ -6,7 +6,7 @@
 >__npm install elist__
 
 
-## [Partly Usage In Jsdoc](https://ihgazni2.github.io/elistjs/global.html#mapf)*
+## [Partly Usage In Jsdoc](https://ihgazni2.github.io/elistjs/global.html#mapf)
 
     partly, still in progresing.........
 
