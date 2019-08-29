@@ -6,9 +6,11 @@
 >__npm install elist__
 
 
-## Usage In Progresing.........
+## Partly Usage In Jsdoc
 
-[usage docs](https://ihgazni2.github.io/elistjs/global.html#mapf)
+    partly, still in progresing.........
+
+[USAGE DOCS](https://ihgazni2.github.io/elistjs/global.html#mapf)
 
 
 ## In Progresing.........
@@ -18,7 +20,8 @@
     just migrate to javascript,
     just some one-command array/list/series  APIs,nothing...
 
-[elist](https://github.com/ihgazni2/elist)
+[elistjs](https://github.com/ihgazni2/elistjs)
+[elistpy](https://github.com/ihgazni2/elist)
 
 ----------------------------------------------
 
