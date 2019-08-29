@@ -15,7 +15,7 @@
  * </pre>
  *
  * @example
- *
+ * function
  *
  *     var arr = [100,200,300,400,500]
  *
@@ -50,6 +50,10 @@
  *       'operation 4:mod :500%50 is 0' ]
  *     >
  *
+ * @example
+ * prototype
+ * 
+ *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
  * @param {Array} otherArgsArr - [O0,O1,O2,...,Ok,...,On]
@@ -75,8 +79,13 @@ function mapfivo(arr,mapFuncsArr,otherArgsArr) {
 }
 
 
+function _mapfivo(mapFuncsArr,otherArgsArr) {
+    return(mapfivo(this,mapFuncsArr,otherArgsArr))
+}
+
+
 Object.defineProperty(Array.prototype, "mapfivo", {
-    value: mapfivo,
+    value: _mapfivo,
     writable: true,
     enumerable: false,
     configurable: true
@@ -297,12 +306,63 @@ Object.defineProperty(Array.prototype, "mapfi", {
 
 /**
  * mapfo
- *
+ * 
+ * <pre>
  * each uppercase Ok IS A Array:
  *     Ok = [ok0,ok1,...,ok-xk]
  *
  * each mapfunc fk USE other args ok-0,ok-1,...,ok-xk AS arguments
  *     nvk = fk(ok-0,ok-1,...,ok-xk)
+ * </pre>
+ *
+ * @example
+ * function    
+ *
+ *     var arr = [100,200,300,400,500]
+ *     
+ *     var mapFuncsArr = [
+ *         (o0,o1)=>(o0(o1)),
+ *         (o0,o1)=>(o0(o0(o1))),
+ *         (o0,o1)=>(o0(o0(o0(o1)))),
+ *         (o0,o1)=>(o0(o0(o0(o0(o1))))),
+ *         (o0,o1)=>(o0(o0(o0(o0(o0(o1)))))),
+ *     ]
+ *     
+ *     var otherArgsArr = [
+ *         [Math.sin,1],
+ *         [Math.cos,2],
+ *         [Math.tan,3],
+ *         [Math.tanh,4],
+ *         [Math.sqrt,5]
+ *     ]
+ *     
+ *     var narr = mapfo(arr,mapFuncsArr,otherArgsArr)
+ *    
+ *     ////
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     > narr
+ *     [ 0.8414709848078965,
+ *       0.9146533258523714,
+ *       -0.14451354178374737,
+ *       0.566157406536178,
+ *       1.0515811984959769 ]
+ *     >
+ *
+ * @example
+ * ptototype
+ *
+ *     ////
+ *     > arr.mapfo(mapFuncsArr,otherArgsArr)
+ *     [ 0.8414709848078965,
+ *       0.9146533258523714,
+ *       -0.14451354178374737,
+ *       0.566157406536178,
+ *       1.0515811984959769 ]
+ *     >
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     >
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
@@ -326,9 +386,12 @@ function mapfo(arr,mapFuncsArr,otherArgsArr) {
     return(narr)
 }
 
+function _mapfo(mapFuncsArr,otherArgsArr) {
+    return(mapfo(this,mapFuncsArr,otherArgsArr))
+}
 
 Object.defineProperty(Array.prototype, "mapfo", {
-    value: mapfo,
+    value: _mapfo,
     writable: true,
     enumerable: false,
     configurable: true
@@ -446,9 +509,43 @@ Object.defineProperty(Array.prototype, "mapvo", {
 /**
  * mapf
  *
- *
- * each mapfunc fk USE index k AND other args o0,o1,o2,...,ok,...,ox  AS arguments
+ * <pre>
+ * each mapfunc fk USE other args o0,o1,o2,...,ok,...,ox  AS arguments
  *     nvk = fk(o0,o1,o2,...,ok,...,ox)
+ * </pre>
+ *
+ * @example
+ * function
+ *
+ *     var arr = [100,200,300,400,500]
+ *     
+ *     var mapFuncsArr = [
+ *         (o0,o1)=>(o0(o1)),
+ *         (o0,o1)=>(o0(o0(o1))),
+ *         (o0,o1)=>(o0(o0(o0(o1)))),
+ *         (o0,o1)=>(o0(o0(o0(o0(o1))))),
+ *         (o0,o1)=>(o0(o0(o0(o0(o0(o1)))))),
+ *     ]
+ *     
+ *     var otherArgs = [Math.sin,1]
+ *     
+ *     var narr = mapf(arr,mapFuncsArr,otherArgs)
+ *     
+ *     ////
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     > narr
+ *     [ 0.8414709848078965,
+ *       0.7456241416655579,
+ *       0.6784304773607402,
+ *       0.6275718320491591,
+ *       0.5871809965734309 ]
+ *     >
+ *
+ * @example
+ * prototype
+ *
+ *
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
@@ -473,8 +570,12 @@ function mapf(arr,mapFuncsArr,otherArgs) {
     return(narr)
 }
 
+function _mapf(arr,mapFuncsArr,otherArgs) {
+    return(mapf(this,mapFuncsArr,otherArgs))
+}
+
 Object.defineProperty(Array.prototype, "mapf", {
-    value: mapf,
+    value: _mapf,
     writable: true,
     enumerable: false,
     configurable: true

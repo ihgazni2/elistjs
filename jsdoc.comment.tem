@@ -10,7 +10,7 @@
  * </pre>
  *
  * @example
- *
+ * function
  *
  *     var arr = [100,200,300,400,500]
  *
@@ -44,6 +44,12 @@
  *       'operation 3:div :400/40 is 10',
  *       'operation 4:mod :500%50 is 0' ]
  *     >
+ *
+ * @example
+ * prototype
+ * 
+ *  
+ *
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
