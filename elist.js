@@ -5,13 +5,39 @@
 
 /**
  * mapfivo
- *
+ * 
+ * <pre>
  * each uppercase Ok IS A Array:
  *     Ok = [ok0,ok1,...,ok-xk]
  *
  * each mapfunc fk USE index k AND other args ok-0,ok-1,...,ok-xk AS arguments
  *     nvk = fk(k,vk,ok-0,ok-1,...,ok-xk)
- *  
+ * </pre>
+ *
+ * @example
+ *
+ *     var arr = [100,200,300,400,500]
+ *
+ *     var mapFuncsArr = [
+ *         (i,v,o0,o1)=>("operation "+i+":"+o0+" "+":"+v+"+"+o1+" is "+(v+o1)),
+ *         (i,v,o0,o1)=>("operation "+i+":"+o0+" "+":"+v+"-"+o1+" is "+(v-o1)),
+ *         (i,v,o0,o1)=>("operation "+i+":"+o0+" "+":"+v+"*"+o1+" is "+(v*o1)),
+ *         (i,v,o0,o1)=>("operation "+i+":"+o0+" "+":"+v+"/"+o1+" is "+(v/o1)),
+ *         (i,v,o0,o1)=>("operation "+i+":"+o0+" "+":"+v+"%"+o1+" is "+(v%o1))
+ *     ]
+ *
+ *     var otherArgsArr = [
+ *         ["plus",10],
+ *         ["minus",20],
+ *         ["mul",30],
+ *         ["div",40],
+ *         ["mod",50]
+ *     ]
+ *
+ *     var narr = mapfivo(arr,mapFuncsArr,otherArgsArr)
+ *     arr
+ *     narr
+ *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
  * @param {Array} otherArgsArr - [O0,O1,O2,...,Ok,...,On]
