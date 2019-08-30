@@ -109,8 +109,53 @@ Object.defineProperty(Array.prototype, "mapfivo", {
 /**
  * mapfiv
  *
+ * <pre>
  * each mapfunc fk USE index k AND other args o0,o1,...,ok,...,ox AS arguments 
  *     nvk = fk(k,vk,o0,o1,...,ok...,ox)
+ * </pre>
+ *
+ * @example
+ * term
+ *
+ *     var arr = [100,200,300,400,500]
+ *
+ *     var mapFuncsArr = [
+ *         (i,v,o0,o1)=>(i + v+ o0(o1)),
+ *         (i,v,o0,o1)=>(i + v+ o0(o0(o1))),
+ *         (i,v,o0,o1)=>(i + v+ o0(o0(o0(o1)))),
+ *         (i,v,o0,o1)=>(i + v+ o0(o0(o0(o0(o1))))),
+ *         (i,v,o0,o1)=>(i + v+ o0(o0(o0(o0(o0(o1)))))),
+ *     ]
+ *     
+ *     var otherArgs = [Math.sin,1]     
+ *
+ *     //prototype
+ *     arr.mapfiv(mapFuncsArr,otherArgs)
+ *     arr
+ *
+ *     ////
+ *     [ 100.8414709848079,
+ *       201.74562414166556,
+ *       302.67843047736073,
+ *       403.62757183204917,
+ *       504.5871809965734 ]
+ *     
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *
+ *     //function
+ *     mapfiv(arr,mapFuncsArr,otherArgs)
+ *
+ *     ////
+ *     [ 100.8414709848079,
+ *       201.74562414166556,
+ *       302.67843047736073,
+ *       403.62757183204917,
+ *       504.5871809965734 ]
+ *
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
@@ -128,9 +173,13 @@ function mapfiv(arr,mapFuncsArr,otherArgs) {
     return(mapfivo(arr,mapFuncsArr,otherArgsArr))
 }
 
+function _mapfiv(mapFuncsArr,otherArgs) {
+    return(mapfiv(this,mapFuncsArr,otherArgs))
+}
+
 
 Object.defineProperty(Array.prototype, "mapfiv", {
-    value: mapfiv,
+    value: _mapfiv,
     writable: true,
     enumerable: false,
     configurable: true
@@ -172,9 +221,12 @@ function mapfio(arr,mapFuncsArr,otherArgsArr) {
     return(narr)
 }
 
+function _mapfio(mapFuncsArr,otherArgsArr) {
+    return(mapfio(this,mapFuncsArr,otherArgsArr))
+}
 
 Object.defineProperty(Array.prototype, "mapfio", {
-    value: mapfio,
+    value: _mapfio,
     writable: true,
     enumerable: false,
     configurable: true
@@ -214,9 +266,12 @@ function mapfvo(arr,mapFuncsArr,otherArgsArr) {
     return(narr)
 }
 
+function _mapfvo(mapFuncsArr,otherArgsArr) {
+    return(mapfvo(this,mapFuncsArr,otherArgsArr))
+}
 
 Object.defineProperty(Array.prototype, "mapfvo", {
-    value: mapfvo,
+    value: _mapfvo,
     writable: true,
     enumerable: false,
     configurable: true
@@ -243,8 +298,12 @@ function mapfv(arr,mapFuncsArr) {
     return(narr)
 }
 
+function _mapfv(mapFuncsArr) {
+    return(mapfv(this,mapFuncsArr))
+}
+
 Object.defineProperty(Array.prototype, "mapfv", {
-    value: mapfv,
+    value: _mapfv,
     writable: true,
     enumerable: false,
     configurable: true
@@ -272,8 +331,13 @@ function mapivo(arr,mapFunc,otherArgsArr) {
     return(mapfivo(arr,mapFuncsArr,otherArgsArr))
 }
 
+function _mapivo(mapFunc,otherArgsArr) {
+    return(mapivo(this,mapFunc,otherArgsArr))
+}
+
+
 Object.defineProperty(Array.prototype, "mapivo", {
-    value: mapivo,
+    value: _mapivo,
     writable: true,
     enumerable: false,
     configurable: true
@@ -309,8 +373,13 @@ function mapfi(arr,mapFuncsArr,otherArgs) {
     return(narr)
 }
 
+function _mapfi(mapFuncsArr,otherArgs) {
+    return(mapfi(this,mapFuncsArr,otherArgs))
+}
+
+
 Object.defineProperty(Array.prototype, "mapfi", {
-    value: mapfi,
+    value: _mapfi,
     writable: true,
     enumerable: false,
     configurable: true
@@ -433,8 +502,13 @@ function mapiv(arr,mapFunc,otherArgs) {
 }
 
 
+function _mapiv(mapFunc,otherArgs) {
+    return(mapiv(this,mapFunc,otherArgs))
+}
+
+
 Object.defineProperty(Array.prototype, "mapiv", {
-    value: mapiv,
+    value: _mapiv,
     writable: true,
     enumerable: false,
     configurable: true
@@ -473,8 +547,14 @@ function mapio(arr,mapFunc,otherArgsArr) {
     return(narr)
 }
 
+
+function _mapio(mapFunc,otherArgsArr) {
+    return(mapio(this,mapFunc,otherArgsArr))
+}
+
+
 Object.defineProperty(Array.prototype, "mapio", {
-    value: mapio,
+    value: _mapio,
     writable: true,
     enumerable: false,
     configurable: true
@@ -513,8 +593,14 @@ function mapvo(arr,mapFunc,otherArgsArr) {
     return(narr)
 }
 
+
+function _mapvo(mapFunc,otherArgsArr) {
+    return(mapvo(this,mapFunc,otherArgsArr))
+}
+
+
 Object.defineProperty(Array.prototype, "mapvo", {
-    value: mapvo,
+    value: _mapvo,
     writable: true,
     enumerable: false,
     configurable: true
@@ -638,8 +724,13 @@ function mapi(arr,mapFunc,otherArgs) {
     return(narr)
 }
 
+function _mapi(mapFunc,otherArgs) {
+    return(mapi(this,mapFunc,otherArgs))
+}
+
+
 Object.defineProperty(Array.prototype, "mapi", {
-    value: mapi,
+    value: _mapi,
     writable: true,
     enumerable: false,
     configurable: true
@@ -674,9 +765,13 @@ function mapv(arr,mapFunc,otherArgs) {
     return(narr)
 }
 
+function _mapv(mapFunc,otherArgs) {
+    return(mapv(this,mapFunc,otherArgs))
+}
+
 
 Object.defineProperty(Array.prototype, "mapv", {
-    value: mapv,
+    value: _mapv,
     writable: true,
     enumerable: false,
     configurable: true
@@ -714,8 +809,12 @@ function mapo(arr,mapFunc,otherArgsArr) {
 }
 
 
+function _mapo(mapFunc,otherArgsArr) {
+    return(mapo(this,mapFunc,otherArgsArr))
+}
+
 Object.defineProperty(Array.prototype, "mapo", {
-    value: mapo,
+    value: _mapo,
     writable: true,
     enumerable: false,
     configurable: true
@@ -1451,8 +1550,12 @@ function allIndexesOf(arr,value) {
     return(tl)
 }
 
+function _allIndexesOf(value) {
+    return(allIndexesOf(this,value))
+}
+
 Object.defineProperty(Array.prototype, "allIndexesOf", {
-    value: allIndexesOf,
+    value: _allIndexesOf,
     writable: true,
     enumerable: false,
     configurable: true
