@@ -1321,7 +1321,7 @@ function slctvFo(arr,condFuncsArr,otherArgsArr) {
 function slctivIv(arr,condFunc,otherArgs) {
     let condFuncsArr = Array(arr.length).fill(condFunc)
     let otherArgsArr = Array(arr.length).fill(otherArgs)
-    return(slctiFivo(arr,condFuncsArr,otherArgsArr))
+    return(slctivFivo(arr,condFuncsArr,otherArgsArr))
 }
 
 function slctiIv(arr,condFunc,otherArgs) {
