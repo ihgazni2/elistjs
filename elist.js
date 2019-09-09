@@ -1887,7 +1887,43 @@ Object.defineProperty(Array.prototype, "last", {
     configurable: true
 })
 
+////
+//
+function insert(arr,value,where) {
+    arr.splice(where, 0, value)
+    return(arr)
+}
 
+function _insert(value,where) {
+    this.splice(where, 0, value)
+    return(this)
+}
+
+Object.defineProperty(Array.prototype, "insert", {
+    value: _insert,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
+
+
+function insertArray(arr,arr1,where) {
+    arr.splice(where, 0, ...arr1)
+    return(arr)
+}
+
+function _insertArray(arr1,where) {
+    this.splice(where, 0, ...arr1)
+    return(this)
+}
+
+Object.defineProperty(Array.prototype, "insertArray", {
+    value: _insertArray,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
 
 
 ////
@@ -1977,5 +2013,7 @@ module.exports = {
     uniqualize:uniqualize,
     tlist:tlist,
     allIndexesOf:allIndexesOf,
-    last:last
+    last:last,
+    insert:insert,
+    insertArray:insertArray
 }
