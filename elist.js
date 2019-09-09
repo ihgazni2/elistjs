@@ -322,7 +322,7 @@ Object.defineProperty(Array.prototype, "mapfio", {
  *     ]
  *
  *     //prototype
- *     arr.mapfio(mapFuncsArr,otherArgsArr)
+ *     arr.mapfvo(mapFuncsArr,otherArgsArr)
  *     arr
  *
  *     ////
@@ -387,14 +387,59 @@ Object.defineProperty(Array.prototype, "mapfvo", {
 })
 
 
-////-here->
 
 /**
  * mapfv
- *
+ * 
+ * <pre>
  * each mapfunc fk USE vk AND other args o0,o1,...,ok,...,ox AS arguments
  *     nvk = fk(vk,o0,o1,...,ox)
+ * </pre>
+ * 
+ * @example
+ * term
+
+ *     var arr = [100,200,300,400,500]
  *
+ *     var mapFuncsArr = [
+ *         (v,o0,o1)=>(v + o0(o1)),
+ *         (v,o0,o1)=>(v + o0(o0(o1))),
+ *         (v,o0,o1)=>(v + o0(o0(o0(o1)))),
+ *         (v,o0,o1)=>(v + o0(o0(o0(o0(o1))))),
+ *         (v,o0,o1)=>(v + o0(o0(o0(o0(o0(o1)))))),
+ *     ]
+ *
+ *     var otherArgs = [Math.sin,1]
+ *
+ *     //prototype
+ *     arr.mapfv(mapFuncsArr,otherArgs)
+ *     arr
+ *
+ *     ////
+ *     > arr.mapfv(mapFuncsArr,otherArgs)
+ *     [ 100.8414709848079,
+ *       200.74562414166556,
+ *       300.67843047736073,
+ *       400.62757183204917,
+ *       500.5871809965734 ]
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *
+ *     //function
+ *     mapfv(arr,mapFuncsArr,otherArgs)
+ *     arr
+ *
+ *     ////
+ *     > mapfv(arr,mapFuncsArr,otherArgs)
+ *     [ 100.8414709848079,
+ *       200.74562414166556,
+ *       300.67843047736073,
+ *       400.62757183204917,
+ *       500.5871809965734 ]
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     >
+ * 
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
  * @param {Array} otherArgs - [o0,o1,o2,...,ok,...,ox]
@@ -402,13 +447,13 @@ Object.defineProperty(Array.prototype, "mapfvo", {
  */
 
 
-function mapfv(arr,mapFuncsArr) {
-    let otherArgsArr = Array(arr.length).fill([])
+function mapfv(arr,mapFuncsArr,otherArgs) {
+    let otherArgsArr = Array(arr.length).fill(otherArgs)
     let narr = mapfvo(arr,mapFuncsArr,otherArgsArr)
     return(narr)
 }
 
-function _mapfv(mapFuncsArr) {
+function _mapfv(mapFuncsArr,otherArgs) {
     return(mapfv(this,mapFuncsArr))
 }
 
@@ -420,15 +465,65 @@ Object.defineProperty(Array.prototype, "mapfv", {
 })
 
 
-
 /**
  * mapivo
  *
+ * <pre>
  * each uppercase Ok IS A Array:
  *     Ok = [ok0,ok1,...,ok-xk]
- *
+ * 
  * mapfunc f USE index k AND other args ok-0,ok-1,...,ok-xk AS arguments
  *     nvk = f(k,vk,ok-0,ok-1,...,ok-xk)
+ * </pre>
+ * 
+ * @example
+ * term
+ *
+ *     var arr = [100,200,300,400,500]
+ * 
+ *     var mapFunc = (i,v,o0,o1)=>("index: "+i+"; value: "+v+"; params: "+o0+","+o1)
+ * 
+ *     var otherArgsArr = [
+ *         ["plus",10],
+ *         ["minus",20],
+ *         ["mul",30],
+ *         ["div",40],
+ *         ["mod",50]
+ *     ]
+ * 
+ *     //function
+ *     var narr = mapivo(arr,mapFunc,otherArgsArr)
+ *     arr
+ *     narr
+ *     
+ *     ////
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     > narr
+ *     [ 'index: 0; value: 100; params: plus,10',
+ *       'index: 1; value: 200; params: minus,20',
+ *       'index: 2; value: 300; params: mul,30',
+ *       'index: 3; value: 400; params: div,40',
+ *       'index: 4; value: 500; params: mod,50' ]
+ * 
+ *     >
+ * 
+ *     //prototype
+ *     arr.mapivo(mapFunc,otherArgsArr)
+ *     arr
+ * 
+ *     ////
+ *     > arr.mapivo(mapFunc,otherArgsArr)
+ *     [ 'index: 0; value: 100; params: plus,10',
+ *       'index: 1; value: 200; params: minus,20',
+ *       'index: 2; value: 300; params: mul,30',
+ *       'index: 3; value: 400; params: div,40',
+ *       'index: 4; value: 500; params: mod,50' ]
+ *     
+ *     >
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     >
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} otherArgsArr - [O0,O1,O2,...,Ok,...,On]
@@ -445,7 +540,6 @@ function _mapivo(mapFunc,otherArgsArr) {
     return(mapivo(this,mapFunc,otherArgsArr))
 }
 
-
 Object.defineProperty(Array.prototype, "mapivo", {
     value: _mapivo,
     writable: true,
@@ -455,12 +549,62 @@ Object.defineProperty(Array.prototype, "mapivo", {
 
 
 
+
 /**
  * mapfi
  *
- *
+ * <pre>
  * each mapfunc fk USE index k AND other args o0,o1,...,ok,...,ox  AS arguments
  *     nvk = fk(k,vk,ok-0,ok-1,...,ok-xk)
+ * </pre>
+ *
+ * @example
+ * term
+ *
+ *      var arr = [100,200,300,400,500]
+ *      
+ *      var mapFuncsArr = [
+ *          (i,o0,o1)=>(i + o0(o1)),
+ *          (i,o0,o1)=>(i + o0(o0(o1))),
+ *          (i,o0,o1)=>(i + o0(o0(o0(o1)))),
+ *          (i,o0,o1)=>(i + o0(o0(o0(o0(o1))))),
+ *          (i,o0,o1)=>(i + o0(o0(o0(o0(o0(o1)))))),
+ *      ]
+ *      
+ *      var otherArgs = [Math.sin,1]
+ *  
+ *  
+ *     //prototype
+ *     arr.mapfi(mapFuncsArr,otherArgs)
+ *     arr
+ *  
+ *     ////
+ *     > arr.mapfi(mapFuncsArr,otherArgs)
+ *      [ 0.8414709848078965,
+ *        1.7456241416655578,
+ *        2.6784304773607404,
+ *        3.627571832049159,
+ *        4.587180996573431 ]
+ *     >
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     >
+ *  
+ *     //function
+ *     mapfi(arr,mapFuncsArr,otherArgs)
+ *     arr
+ *  
+ *     ////
+ *     > mapfi(arr,mapFuncsArr,otherArgs)
+ *      [ 0.8414709848078965,
+ *        1.7456241416655578,
+ *        2.6784304773607404,
+ *        3.627571832049159,
+ *        4.587180996573431 ]
+ *     >
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ *     >
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
@@ -595,9 +739,48 @@ Object.defineProperty(Array.prototype, "mapfo", {
 
 /**
  * mapiv
- *
+ * 
+ * <pre>
  * mapfunc f USE index k AND value vk AND other args o0,o1,o2,...,ok,...,ox AS arguments
  *     nvk = fk(k,vk,o0,o1,o2,...,ok,...,ox)
+ * </pre>
+ *
+ * @example
+ * term
+ *
+ *     var arr = [100,200,300,400,500]
+ *     var mapFunc = (i,v,o0,o1)=>(i + v+ o0(o1))
+ *     var otherArgs = [Math.sin,1]
+ * 
+ *     //prototype
+ *     arr.mapiv(mapFunc,otherArgs)
+ *     arr
+ * 
+ *     ////
+ *     >arr.mapiv(mapFunc,otherArgs)
+ *     [ 100.8414709848079,
+ *       201.8414709848079,
+ *       302.84147098480787,
+ *       403.84147098480787,
+ *       504.84147098480787 ]
+ *     
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
+ * 
+ *     //function
+ *     mapiv(arr,mapFunc,otherArgs)
+ * 
+ * 
+ *     ////
+ *     >  mapiv(arr,mapFunc,otherArgs)
+ *     [ 100.8414709848079,
+ *       201.8414709848079,
+ *       302.84147098480787,
+ *       403.84147098480787,
+ *       504.84147098480787 ]
+ * 
+ *     > arr
+ *     [ 100, 200, 300, 400, 500 ]
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
@@ -625,14 +808,19 @@ Object.defineProperty(Array.prototype, "mapiv", {
 })
 
 
+//// -here
+
+
 /**
  * mapio
  *
+ * <pre>
  * each uppercase Ok IS A Array:
  *     Ok = [ok0,ok1,...,ok-xk]
  *
  * mapfunc f USE index k AND other args ok-0,ok-1,...,ok-xk AS arguments
  *     nvk = fk(k,vk,ok-0,ok-1,...,ok-xk)
+ * </pre>
  *
  * @param {Array} arr - [v0,v1,v2,...,vk,...,vn]
  * @param {Array} mapFuncsArr - [f0,f1,f2,...,fk,...,fn]
@@ -954,6 +1142,19 @@ function slctivFivo(arr,condFuncsArr,otherArgsArr) {
     }
     return(narr)
 }
+
+function _slctivFivo(condFuncsArr,otherArgsArr) {
+    return(slctivFivo(this,condFuncsArr,otherArgsArr))
+}
+
+Object.defineProperty(Array.prototype, "slctivFivo", {
+    value: _slctivFivo,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
+
 
 function slctiFivo(arr,condFuncsArr,otherArgsArr) {
     let narr = slctivFivo(arr,condFuncsArr,otherArgsArr)

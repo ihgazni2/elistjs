@@ -256,7 +256,7 @@ each mapfunc fk USE other args o0,o1,o2,...,ok,...,ox  AS arguments
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line781">line 781</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line969">line 969</a>
     </li></ul></dd>
     
 
@@ -371,9 +371,10 @@ each mapfunc fk USE other args o0,o1,o2,...,ok,...,ox  AS arguments
 <div class="description">
     mapfi
 
-
+<pre>
 each mapfunc fk USE index k AND other args o0,o1,...,ok,...,ox  AS arguments
     nvk = fk(k,vk,ok-0,ok-1,...,ok-xk)
+</pre>
 </div>
 
 
@@ -489,7 +490,7 @@ each mapfunc fk USE index k AND other args o0,o1,...,ok,...,ox  AS arguments
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line471">line 471</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line615">line 615</a>
     </li></ul></dd>
     
 
@@ -538,6 +539,56 @@ each mapfunc fk USE index k AND other args o0,o1,...,ok,...,ox  AS arguments
     
 
 
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>term
+
+     var arr = [100,200,300,400,500]
+     
+     var mapFuncsArr = [
+         (i,o0,o1)=>(i + o0(o1)),
+         (i,o0,o1)=>(i + o0(o0(o1))),
+         (i,o0,o1)=>(i + o0(o0(o0(o1)))),
+         (i,o0,o1)=>(i + o0(o0(o0(o0(o1))))),
+         (i,o0,o1)=>(i + o0(o0(o0(o0(o0(o1)))))),
+     ]
+     
+     var otherArgs = [Math.sin,1]
+ 
+ 
+    //prototype
+    arr.mapfi(mapFuncsArr,otherArgs)
+    arr
+ 
+    ////
+    > arr.mapfi(mapFuncsArr,otherArgs)
+     [ 0.8414709848078965,
+       1.7456241416655578,
+       2.6784304773607404,
+       3.627571832049159,
+       4.587180996573431 ]
+    >
+    > arr
+    [ 100, 200, 300, 400, 500 ]
+    >
+ 
+    //function
+    mapfi(arr,mapFuncsArr,otherArgs)
+    arr
+ 
+    ////
+    > mapfi(arr,mapFuncsArr,otherArgs)
+     [ 0.8414709848078965,
+       1.7456241416655578,
+       2.6784304773607404,
+       3.627571832049159,
+       4.587180996573431 ]
+    >
+    > arr
+    [ 100, 200, 300, 400, 500 ]
+    ></code></pre>
 
 
 
@@ -1493,7 +1544,7 @@ each mapfunc fk USE other args ok-0,ok-1,...,ok-xk AS arguments
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line569">line 569</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line713">line 713</a>
     </li></ul></dd>
     
 
@@ -1614,8 +1665,10 @@ each mapfunc fk USE other args ok-0,ok-1,...,ok-xk AS arguments
 <div class="description">
     mapfv
 
+<pre>
 each mapfunc fk USE vk AND other args o0,o1,...,ok,...,ox AS arguments
     nvk = fk(vk,o0,o1,...,ox)
+</pre>
 </div>
 
 
@@ -1754,7 +1807,7 @@ each mapfunc fk USE vk AND other args o0,o1,...,ok,...,ox AS arguments
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line405">line 405</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line450">line 450</a>
     </li></ul></dd>
     
 
@@ -1803,6 +1856,51 @@ each mapfunc fk USE vk AND other args o0,o1,...,ok,...,ox AS arguments
     
 
 
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>term
+    var arr = [100,200,300,400,500]
+
+    var mapFuncsArr = [
+        (v,o0,o1)=>(v + o0(o1)),
+        (v,o0,o1)=>(v + o0(o0(o1))),
+        (v,o0,o1)=>(v + o0(o0(o0(o1)))),
+        (v,o0,o1)=>(v + o0(o0(o0(o0(o1))))),
+        (v,o0,o1)=>(v + o0(o0(o0(o0(o0(o1)))))),
+    ]
+
+    var otherArgs = [Math.sin,1]
+
+    //prototype
+    arr.mapfv(mapFuncsArr,otherArgs)
+    arr
+
+    ////
+    > arr.mapfv(mapFuncsArr,otherArgs)
+    [ 100.8414709848079,
+      200.74562414166556,
+      300.67843047736073,
+      400.62757183204917,
+      500.5871809965734 ]
+    > arr
+    [ 100, 200, 300, 400, 500 ]
+
+    //function
+    mapfv(arr,mapFuncsArr,otherArgs)
+    arr
+
+    ////
+    > mapfv(arr,mapFuncsArr,otherArgs)
+    [ 100.8414709848079,
+      200.74562414166556,
+      300.67843047736073,
+      400.62757183204917,
+      500.5871809965734 ]
+    > arr
+    [ 100, 200, 300, 400, 500 ]
+    ></code></pre>
 
 
 
@@ -2041,7 +2139,7 @@ each mapfunc fk USE value vk  AND other args ok-0,ok-1,...,ok-xk AS arguments
     ]
 
     //prototype
-    arr.mapfio(mapFuncsArr,otherArgsArr)
+    arr.mapfvo(mapFuncsArr,otherArgsArr)
     arr
 
     ////
@@ -2229,7 +2327,7 @@ mapfunc f USE index k AND other args o0,o1,o2,...,ok,...,ox  AS arguments
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line824">line 824</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line1012">line 1012</a>
     </li></ul></dd>
     
 
@@ -2297,11 +2395,13 @@ mapfunc f USE index k AND other args o0,o1,o2,...,ok,...,ox  AS arguments
 <div class="description">
     mapio
 
+<pre>
 each uppercase Ok IS A Array:
     Ok = [ok0,ok1,...,ok-xk]
 
 mapfunc f USE index k AND other args ok-0,ok-1,...,ok-xk AS arguments
     nvk = fk(k,vk,ok-0,ok-1,...,ok-xk)
+</pre>
 </div>
 
 
@@ -2440,7 +2540,7 @@ mapfunc f USE index k AND other args ok-0,ok-1,...,ok-xk AS arguments
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line644">line 644</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line832">line 832</a>
     </li></ul></dd>
     
 
@@ -2508,8 +2608,10 @@ mapfunc f USE index k AND other args ok-0,ok-1,...,ok-xk AS arguments
 <div class="description">
     mapiv
 
+<pre>
 mapfunc f USE index k AND value vk AND other args o0,o1,o2,...,ok,...,ox AS arguments
     nvk = fk(k,vk,o0,o1,o2,...,ok,...,ox)
+</pre>
 </div>
 
 
@@ -2648,7 +2750,7 @@ mapfunc f USE index k AND value vk AND other args o0,o1,o2,...,ok,...,ox AS argu
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line609">line 609</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line792">line 792</a>
     </li></ul></dd>
     
 
@@ -2699,6 +2801,45 @@ mapfunc f USE index k AND value vk AND other args o0,o1,o2,...,ok,...,ox AS argu
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>term
+
+    var arr = [100,200,300,400,500]
+    var mapFunc = (i,v,o0,o1)=>(i + v+ o0(o1))
+    var otherArgs = [Math.sin,1]
+
+    //prototype
+    arr.mapiv(mapFunc,otherArgs)
+    arr
+
+    ////
+    >arr.mapiv(mapFunc,otherArgs)
+    [ 100.8414709848079,
+      201.8414709848079,
+      302.84147098480787,
+      403.84147098480787,
+      504.84147098480787 ]
+    
+    > arr
+    [ 100, 200, 300, 400, 500 ]
+
+    //function
+    mapiv(arr,mapFunc,otherArgs)
+
+
+    ////
+    >  mapiv(arr,mapFunc,otherArgs)
+    [ 100.8414709848079,
+      201.8414709848079,
+      302.84147098480787,
+      403.84147098480787,
+      504.84147098480787 ]
+
+    > arr
+    [ 100, 200, 300, 400, 500 ]</code></pre>
+
+
 
         
             
@@ -2716,11 +2857,13 @@ mapfunc f USE index k AND value vk AND other args o0,o1,o2,...,ok,...,ox AS argu
 <div class="description">
     mapivo
 
+<pre>
 each uppercase Ok IS A Array:
     Ok = [ok0,ok1,...,ok-xk]
 
 mapfunc f USE index k AND other args ok-0,ok-1,...,ok-xk AS arguments
     nvk = f(k,vk,ok-0,ok-1,...,ok-xk)
+</pre>
 </div>
 
 
@@ -2836,7 +2979,7 @@ mapfunc f USE index k AND other args ok-0,ok-1,...,ok-xk AS arguments
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line439">line 439</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line534">line 534</a>
     </li></ul></dd>
     
 
@@ -2885,6 +3028,57 @@ mapfunc f USE index k AND other args ok-0,ok-1,...,ok-xk AS arguments
     
 
 
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>term
+
+    var arr = [100,200,300,400,500]
+
+    var mapFunc = (i,v,o0,o1)=>("index: "+i+"; value: "+v+"; params: "+o0+","+o1)
+
+    var otherArgsArr = [
+        ["plus",10],
+        ["minus",20],
+        ["mul",30],
+        ["div",40],
+        ["mod",50]
+    ]
+
+    //function
+    var narr = mapivo(arr,mapFunc,otherArgsArr)
+    arr
+    narr
+    
+    ////
+    > arr
+    [ 100, 200, 300, 400, 500 ]
+    > narr
+    [ 'index: 0; value: 100; params: plus,10',
+      'index: 1; value: 200; params: minus,20',
+      'index: 2; value: 300; params: mul,30',
+      'index: 3; value: 400; params: div,40',
+      'index: 4; value: 500; params: mod,50' ]
+
+    >
+
+    //prototype
+    arr.mapivo(mapFunc,otherArgsArr)
+    arr
+
+    ////
+    > arr.mapivo(mapFunc,otherArgsArr)
+    [ 'index: 0; value: 100; params: plus,10',
+      'index: 1; value: 200; params: minus,20',
+      'index: 2; value: 300; params: mul,30',
+      'index: 3; value: 400; params: div,40',
+      'index: 4; value: 500; params: mod,50' ]
+    
+    >
+    > arr
+    [ 100, 200, 300, 400, 500 ]
+    ></code></pre>
 
 
 
@@ -3047,7 +3241,7 @@ mapfunc f USE other args ok-0,ok-1,...,ok-xk AS arguments
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line908">line 908</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line1096">line 1096</a>
     </li></ul></dd>
     
 
@@ -3256,7 +3450,7 @@ mapfunc f USE value vk  AND other args o0,o1,o2,...,ok,...,ox  AS arguments
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line865">line 865</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line1053">line 1053</a>
     </li></ul></dd>
     
 
@@ -3467,7 +3661,7 @@ each mapfunc fk USE value vk  AND other args ok-0,ok-1,...,ok-xk AS arguments
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line690">line 690</a>
+        <a href="elist.js.html">elist.js</a>, <a href="elist.js.html#line878">line 878</a>
     </li></ul></dd>
     
 
@@ -3541,7 +3735,7 @@ each mapfunc fk USE value vk  AND other args ok-0,ok-1,...,ok-xk AS arguments
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Aug 31 2019 14:30:34 GMT+0000 (UTC)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Sep 09 2019 15:02:07 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
