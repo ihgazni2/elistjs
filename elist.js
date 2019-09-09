@@ -1872,6 +1872,22 @@ Object.defineProperty(Array.prototype, "allIndexesOf", {
     configurable: true
 })
 
+function last(arr) {
+    return(arr[arr.length-1])
+}
+
+function _last() {
+    return(this[this.length-1])
+}
+
+Object.defineProperty(Array.prototype, "last", {
+    value: _last,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
+
 
 
 ////
@@ -1960,5 +1976,6 @@ module.exports = {
     extendWithOneValue:extendWithOneValue,
     uniqualize:uniqualize,
     tlist:tlist,
-    allIndexesOf:allIndexesOf
+    allIndexesOf:allIndexesOf,
+    last:last
 }
