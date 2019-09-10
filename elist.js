@@ -1503,7 +1503,8 @@ function slctvO(arr,condFunc,otherArgsArr) {
     return(narr.map((ele)=>(ele.v)))
 }
 
-//
+////replace
+
 function replDefaultCondFunc(index,ele,orig) {
     return(ele===orig)
 }
@@ -1530,6 +1531,8 @@ function replace(arr,orig,replacer) {
     return(narr)
 }
 
+
+//
 
 //
 function diffDefaultCondFunc(strict){
@@ -1925,6 +1928,38 @@ Object.defineProperty(Array.prototype, "insertArray", {
     configurable: true
 })
 
+////
+function seqs(arr,indexes) {
+    return(arr.filter((r,i)=>(indexes.includes(i))))
+}
+
+function _seqs(indexes) {
+    return(this.filter((r,i)=>(indexes.includes(i))))
+}
+
+Object.defineProperty(Array.prototype, "seqs", {
+    value: _seqs,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
+////
+function seqsNot(arr,indexes) {
+    return(arr.filter((r,i)=>(!indexes.includes(i))))
+}
+
+function _seqsNot(indexes) {
+    return(this.filter((r,i)=>(!indexes.includes(i))))
+}
+
+Object.defineProperty(Array.prototype, "seqsNot", {
+    value: _seqsNot,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
 
 ////
 
@@ -2015,5 +2050,7 @@ module.exports = {
     allIndexesOf:allIndexesOf,
     last:last,
     insert:insert,
-    insertArray:insertArray
+    insertArray:insertArray,
+    seqs:seqs,
+    seqsNot:seqsNot,
 }
