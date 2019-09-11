@@ -1,4 +1,4 @@
-
+const util = require('util')
 
 ////MAP
 
@@ -2012,7 +2012,7 @@ function interleaveEngine(...arrs) {
 function getInterleaveParams(arrs) {
     let interval;
     let lasti = arrs.length-1
-    if(utils.isArray(arrs[lasti])) {
+    if(util.isArray(arrs[lasti])) {
         interval = 1
     } else {
         interval = parseInt(arrs[lasti])
