@@ -1647,27 +1647,6 @@ function reheadV(arr,value) {
 
 
 
-
-//two list 
-function interleave(l1,l2) {
-    let lngth = Math.min(l1.length,l2.length)
-    let nl =[]
-    for(let i=0;i<lngth;i++){
-        nl.push(l1[i])
-	nl.push(l2[i])
-    }
-    if(l1.length>lngth) {
-        for(let i=lngth;i<l1.length;i++){
-	    nl.push(l1[i])
-	}
-    } 
-    if(l2.length>lngth) {
-        for(let i=lngth;i<l2.length;i++){
-            nl.push(l2[i])
-        }
-    }
-    return(nl)
-}
 //
 
 
@@ -2118,7 +2097,6 @@ module.exports = {
     slctvO:slctvO,
     replfivo:replfivo,
     replace:replace,
-    interleave:interleave,
     diffi:diffi,
     diffv:diffv,
     diffiv:diffiv,
