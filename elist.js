@@ -1963,6 +1963,101 @@ Object.defineProperty(Array.prototype, "seqsNot", {
 
 ////
 
+function evens(arr) {
+    return(arr.filter((r,i)=>(i%2===0)))
+}
+
+function _evens() {
+    return(this.filter((r,i)=>(i%2===0)))
+}
+
+Object.defineProperty(Array.prototype, "evens", {
+    value: _evens,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
+function odds(arr) {
+    return(arr.filter((r,i)=>(i%2===1)))
+}
+
+function _odds() {
+    return(this.filter((r,i)=>(i%2===1)))
+}
+
+Object.defineProperty(Array.prototype, "odds", {
+    value: _odds,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
+
+////
+
+function dmatMinBreadth(dmat) {
+    let depth = dmat.length
+    let breadthArr = dmat.map((arr)=>(arr.length))
+    return(Math.min(...breadthArr))
+}
+
+function dmatReduceViaMinBreadth(dmat) {
+    let breadth = dmatMinBreadth(dmat)
+    let m = dmat.map((arr)=>(arr.slice(0,breadth)))
+    let dm = dmat.map((arr)=>(arr.slice(breadth))).filter((arr)=>(arr.length>0))
+    return([m,dm])
+}
+
+function dmat2mats(dmat) {
+    let mats = []
+    let dm = dmat;
+    let m;
+    while(dm.length > 0) {
+        [m,dm] = dmatReduceViaMinBreadth(dm)
+        mats.push(m)
+    }
+    return(mats)
+}
+
+function interleaveEngine(...arrs) {
+    let mats = dmat2mats(arrs)
+    tmats = mats.map(transpose)
+    wfsmat = tmats.map(mat2list)
+    let l = mat2list(wfsmat) 
+    return(l)
+}
+
+function interleave(...arrs,interval) {
+    let interval = (interval === undefined) ?
+        1:
+        (interval  < 1) ?
+            1:interval
+    arrs = mapv(arrs,(arr,o)=>(divide(arr,o)),[interval])
+    let l = interleaveEngine(...arrs)
+    l = mat2list(l)
+    return(l)
+}
+
+
+function _interleave(...arrs,interval) {
+    arrs.unshift(this)
+    return(interleave(...arrs,interval))
+}
+
+Object.defineProperty(Array.prototype, "interleave", {
+    value: _interleave,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
+
+////
+
+
+////
+
 module.exports = {
     mapfivo:mapfivo,
     mapfiv:mapfiv,
@@ -2053,4 +2148,8 @@ module.exports = {
     insertArray:insertArray,
     seqs:seqs,
     seqsNot:seqsNot,
+    evens:evens,
+    odds:odds,
+    dmat2mats:dmat2mats,
+    interleave:interleave
 }
