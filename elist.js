@@ -1319,6 +1319,11 @@ function slctvFo(arr,condFuncsArr,otherArgsArr) {
 }
 
 function slctivIv(arr,condFunc,otherArgs) {
+    if(otherArgs===undefined) {
+        otherArgs = []
+    } else {
+
+    }
     let condFuncsArr = Array(arr.length).fill(condFunc)
     let otherArgsArr = Array(arr.length).fill(otherArgs)
     return(slctivFivo(arr,condFuncsArr,otherArgsArr))
