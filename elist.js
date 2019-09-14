@@ -1938,11 +1938,15 @@ Object.defineProperty(Array.prototype, "insertArray", {
 
 ////
 function seqs(arr,indexes) {
-    return(arr.filter((r,i)=>(indexes.includes(i))))
+    let narr = []
+    for(let i=0;i<indexes.length;i++) {
+        narr.push(arr[indexes[i]])
+    }
+    return(narr)
 }
 
 function _seqs(indexes) {
-    return(this.filter((r,i)=>(indexes.includes(i))))
+    return(seqs(this,indexes))
 }
 
 Object.defineProperty(Array.prototype, "seqs", {
@@ -2080,7 +2084,16 @@ Object.defineProperty(Array.prototype, "interleave", {
 
 
 ////
+function _swapParamsWrap(f,argSeqs) {
+    let nf = function (...args) {
+        let nargs = seqs(args,argSeqs)
+        return(f(...nargs))
+    }
+    return(nf)
+}
+
 function findAllIndexes(arr,condFunc,otherArgs) {
+    condFunc = _swapParamsWrap(condFunc,[1,0,2])
     return(slctiIv(arr,condFunc,otherArgs))
 }
 
