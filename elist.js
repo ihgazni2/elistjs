@@ -1329,6 +1329,17 @@ function slctiIv(arr,condFunc,otherArgs) {
     return(narr.map((ele)=>(ele.i)))
 }
 
+function _slctiIv(condFunc,otherArgs) {
+    return(slctiIv(this,condFunc,otherArgs))
+}
+
+Object.defineProperty(Array.prototype, "slctiIv", {
+    value: _slctiIv,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
 function slctvIv(arr,condFunc,otherArgs) {
     let narr = slctivIv(arr,condFunc,otherArgs)
     return(narr.map((ele)=>(ele.v)))
@@ -1470,6 +1481,19 @@ function slctiV(arr,condFunc,otherArgs) {
     let narr = slctivV(arr,condFunc,otherArgs)
     return(narr.map((ele)=>(ele.i)))
 }
+
+function _slctiV(condFunc,otherArgs) {
+    return(slctiV(this,condFunc,otherArgs))
+}
+
+Object.defineProperty(Array.prototype, "slctiV", {
+    value: _slctiV,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
+
+
 
 function slctvV(arr,condFunc,otherArgs) {
     let narr = slctivV(arr,condFunc,otherArgs)
@@ -2051,7 +2075,20 @@ Object.defineProperty(Array.prototype, "interleave", {
 
 
 ////
+function findAllIndexes(arr,condFunc,otherArgs) {
+    return(slctiIv(arr,condFunc,otherArgs))
+}
 
+function _findAllIndexes(condFunc,otherArgs) {
+    return(findAllIndexes(this,condFunc,otherArgs))
+}
+
+Object.defineProperty(Array.prototype, "findAllIndexes", {
+    value: _findAllIndexes,
+    writable: true,
+    enumerable: false,
+    configurable: true
+})
 
 ////
 
@@ -2147,5 +2184,6 @@ module.exports = {
     evens:evens,
     odds:odds,
     dmat2mats:dmat2mats,
-    interleave:interleave
+    interleave:interleave,
+    findAllIndexes:findAllIndexes
 }
