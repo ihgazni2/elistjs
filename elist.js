@@ -1898,12 +1898,32 @@ Object.defineProperty(Array.prototype, "last", {
     configurable: true
 })
 
-////
-//
+////this function is a little puzzle
+// class Array1 extends Array {}
+// var arr1 = Array1(1,2,3)
+// arr1
+// >Array1 [ 1, 2, 3]
+// arr2 = [ 4, 5, 6]
+// arr2
+// >[ 4, 5, 6 ]
+// decltype(arr1,arr2)
+// Array1 [ 4, 5, 6 ]
+function decltype(protoObj,obj) {
+    let prototype = Object.getPrototypeOf(protoObj)
+    let cons = prototype.constructor
+    let newObj = new cons(...obj)
+    return(newObj)
+}
+
+
+//// 
 function insert(arr,value,where,inplace=true) {
     if(inplace === true) {
+
     } else {
+        let old = arr
         arr = JSON.parse(JSON.stringify(arr))
+        arr = decltype(old,arr)
     }
     Array.prototype.splice.call(arr,where, 0, value)
     return(arr)
@@ -1926,7 +1946,9 @@ Object.defineProperty(Array.prototype, "insert", {
 function insertArray(arr,arr1,where,inplace=true) {
     if(inplace === true) {
     } else {
+        let old = arr
         arr = JSON.parse(JSON.stringify(arr))
+        arr = decltype(old,arr)
     }
     Array.prototype.splice.call(arr,where, 0, ...arr1)
     return(arr)
