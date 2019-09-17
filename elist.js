@@ -1900,14 +1900,16 @@ Object.defineProperty(Array.prototype, "last", {
 
 ////
 //
-function insert(arr,value,where) {
-    //arr.splice(where, 0, value)
+function insert(arr,value,where,inplace=true) {
+    if(inplace === true) {
+    } else {
+        arr = JSON.parse(JSON.stringify(arr))
+    }
     Array.prototype.splice.call(arr,where, 0, value)
     return(arr)
 }
 
 function _insert(value,where) {
-    //this.splice(where, 0, value)
     Array.prototype.splice.call(this,where, 0, value)
     return(this)
 }
@@ -1921,14 +1923,16 @@ Object.defineProperty(Array.prototype, "insert", {
 
 
 
-function insertArray(arr,arr1,where) {
-    //arr.splice(where, 0, ...arr1)
+function insertArray(arr,arr1,where,inplace=true) {
+    if(inplace === true) {
+    } else {
+        arr = JSON.parse(JSON.stringify(arr))
+    }
     Array.prototype.splice.call(arr,where, 0, ...arr1)
     return(arr)
 }
 
 function _insertArray(arr1,where) {
-    //this.splice(where, 0, ...arr1)
     Array.prototype.splice.call(this,where, 0, ...arr1)
     return(this)
 }
