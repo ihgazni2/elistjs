@@ -2233,5 +2233,6 @@ module.exports = {
     odds:odds,
     dmat2mats:dmat2mats,
     interleave:interleave,
-    findAllIndexes:findAllIndexes
+    findAllIndexes:findAllIndexes,
+    decltype:decltype,
 }
