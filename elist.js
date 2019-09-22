@@ -2139,6 +2139,46 @@ Object.defineProperty(Array.prototype, "findAllIndexes", {
 })
 
 ////
+function rcrdize(l) {
+    return(l.map((r,i)=>({_oi:i,_v:r})))
+}
+
+function matInplaceMapv(m,func) {
+    for(let i=0;i<m.length;i++) {
+        let layer = m[i]
+        for(let j=0;j<layer.length;j++){
+            let ele = layer[j]
+            m[i][j] = func(ele)
+        }
+    }
+    return(m)
+}
+
+function matInplaceMapxyv(m,func) {
+    for(let i=0;i<m.length;i++) {
+        let layer = m[i]
+        for(let j=0;j<layer.length;j++){
+            let ele = layer[j]
+            m[i][j] = func(i,j,ele)
+        }
+    }
+    return(m)
+}
+
+
+function rcrdOne(x,y,v) {
+    return({
+        "_ox":x,
+        "_oy":y,
+        "_v":v
+    })
+}
+
+function matRcrdize(m) {
+    return(matInplaceMapxyv(m,rcrdOne))
+}
+
+////
 
 module.exports = {
     mapfivo:mapfivo,
@@ -2235,4 +2275,9 @@ module.exports = {
     interleave:interleave,
     findAllIndexes:findAllIndexes,
     decltype:decltype,
+    rcrdize:rcrdize,
+    matRcrdize:matRcrdize,
+    matInplaceMapv:matInplaceMapv,
+    matInplaceMapxyv:matInplaceMapxyv,
+    matRcrdize:matRcrdize
 }
