@@ -2179,6 +2179,51 @@ function matRcrdize(m) {
 }
 
 ////
+function fst_index_of(v,arr) {
+    let tl = all_indexes_of(v,arr)
+    return(tl[0])
+}
+
+function lst_index_of(v,arr) {
+    let tl = all_indexes_of(v,arr)
+    return(tl[tl.length-1])
+}
+
+function which_index_of(which,v,arr) {
+    let tl = all_indexes_of(v,arr)
+    return(tl[which])
+}
+
+function all_indexes_of(v,arr) {
+    let tl =  tlist(arr)
+    tl= tl.filter((t)=>(t[1] == value))
+    tl = tl.map((r)=>r[0])
+    return(tl)
+}
+
+function rmfst(v,arr){
+    arr.splice(arr.findIndex(r=>r===v),1)
+    return(arr)
+}
+
+function rmlst(v,arr) {
+    let index = lst_index_of(v,arr)
+    arr.splice(index,1)
+    return(arr)
+}
+
+function rm_which(which,v,arr) {
+    let index = which_index_of(which,v,arr)
+    arr.splice(index,1)
+    return(arr)
+}
+
+function rm_all(v,arr) {
+    arr = arr.filter(r=>r!==v)
+    return(arr)
+}
+
+////
 
 module.exports = {
     mapfivo:mapfivo,
@@ -2279,5 +2324,15 @@ module.exports = {
     matRcrdize:matRcrdize,
     matInplaceMapv:matInplaceMapv,
     matInplaceMapxyv:matInplaceMapxyv,
-    matRcrdize:matRcrdize
+    matRcrdize:matRcrdize,
+    rmfst:rmfst,
+    rmlst:rmlst,
+    rm_which:rm_which,
+    rmall:rmall,
+    fst_index_of:fst_index_of,
+    lst_index_of:lst_index_of,
+    which_index_of:which_index_of,
+    all_indexes_of:all_indexes_of,
+
+
 }
