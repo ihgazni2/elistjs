@@ -2224,6 +2224,36 @@ function rmall(v,arr) {
 }
 
 ////
+function list_inter_list(l0,l1) {
+    //l0 should_in_userids
+    //l1  ids
+    //l1 中只要有一个在should_in_userids 就行, 或者l1 为空
+    if(l1.length === 0) {
+    return(true)
+    } else {
+        for(let each of l1) {
+            let cond = l0.includes(each)
+            if(cond) {
+                return(true)
+            } else {
+            }
+        }
+        return(false)
+    }
+}
+
+
+function list_includes_list(l0,l1) {
+    for(let each of l1) {
+        let cond = l0.includes(each)
+    if(cond) {
+        
+    } else {
+        return(false)
+    }
+    }
+    return(true)
+////
 
 module.exports = {
     mapfivo:mapfivo,
@@ -2333,6 +2363,6 @@ module.exports = {
     lst_index_of:lst_index_of,
     which_index_of:which_index_of,
     all_indexes_of:all_indexes_of,
-
-
+    list_inter_list：list_inter_list,
+    list_includes_list:list_includes_list,
 }
