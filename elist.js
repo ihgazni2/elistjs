@@ -2363,6 +2363,6 @@ module.exports = {
     lst_index_of:lst_index_of,
     which_index_of:which_index_of,
     all_indexes_of:all_indexes_of,
-    list_inter_list：list_inter_list,
+    list_inter_list:list_inter_list,
     list_includes_list:list_includes_list,
 }
