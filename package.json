@@ -1,6 +1,6 @@
 {
     "name": "elist",
-    "version": "1.4.30",
+    "version": "1.4.31",
     "description": "array toolset",
     "main": "elist.js",
     "scripts": {
