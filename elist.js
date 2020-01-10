@@ -2218,7 +2218,7 @@ function rm_which(which,v,arr) {
     return(arr)
 }
 
-function rm_all(v,arr) {
+function rmall(v,arr) {
     arr = arr.filter(r=>r!==v)
     return(arr)
 }
